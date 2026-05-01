@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>NomadMap</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#0D1117; --paper:#14B8A6; --muted:rgba(20,184,166,0.6); }
+  html,body { margin:0; height:100%; background:var(--ink); color:var(--paper);
+    font-family:'Inter',system-ui,sans-serif; }
+  .wrap { min-height:100dvh; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:32px; padding:24px; }
+  .title { font-size:48px; font-weight:700; letter-spacing:-1.2px; color:#ffffff; }
+  .sub { font-size:13px; opacity:.7; letter-spacing:2px; color:#2DD4BF;
+    font-weight:600; }
+  .legal { position:fixed; bottom:20px; left:0; right:0;
+    display:flex; justify-content:space-between; padding:0 24px;
+    font-size:12px; box-sizing:border-box; pointer-events:none; }
+  .legal a { color:var(--muted); text-decoration:none; pointer-events:auto;
+    letter-spacing:0.3px; transition:color .2s; }
+  .legal a:hover { color:var(--paper); }
+
+  svg { width:min(52vmin, 320px); height:auto; }
+
+  @keyframes pulseOut {
+    0%   { r:12;  opacity:.9; stroke-width:3; }
+    80%  { opacity:0; stroke-width:.8; }
+    100% { r:100; opacity:0; stroke-width:.5; }
+  }
+  @keyframes nodeIn {
+    0%   { opacity:0; transform:scale(.2); }
+    60%  { opacity:1; transform:scale(1.25); }
+    100% { opacity:1; transform:scale(1); }
+  }
+  @keyframes beat {
+    0%,100% { transform:scale(1); }
+    8%      { transform:scale(1.05); }
+    16%     { transform:scale(1); }
+    24%     { transform:scale(1.05); }
+    32%     { transform:scale(1); }
+  }
+  .ring  { animation: pulseOut 2.8s cubic-bezier(.33,0,.25,1) infinite;
+           transform-origin:120px 120px; }
+  .r2    { animation-delay:.93s; }
+  .r3    { animation-delay:1.86s; }
+  .node  { opacity:0; transform-origin:center; transform-box:fill-box;
+           animation: nodeIn .55s cubic-bezier(.34,1.56,.64,1) forwards; }
+  .pin   { animation: beat 3.2s ease-in-out infinite 1.2s;
+           transform-origin:120px 120px; transform-box:view-box; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ring, .node, .pin { animation: none; opacity: 1; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <svg viewBox="0 0 240 240" aria-label="NomadMap">
+    <g fill="none" stroke="currentColor" stroke-linecap="round">
+      <circle class="ring"    cx="120" cy="120" r="12" stroke-width="3"/>
+      <circle class="ring r2" cx="120" cy="120" r="12" stroke-width="3"/>
+      <circle class="ring r3" cx="120" cy="120" r="12" stroke-width="3"/>
+    </g>
+    <circle class="node" cx="120"   cy="24"    r="7"  fill="currentColor" style="animation-delay:.15s"/>
+    <circle class="node" cx="181.7" cy="46.5"  r="5"  fill="currentColor" style="animation-delay:.22s"/>
+    <circle class="node" cx="214.5" cy="103.3" r="10" fill="currentColor" style="animation-delay:.29s"/>
+    <circle class="node" cx="203.1" cy="168"   r="5"  fill="currentColor" style="animation-delay:.36s"/>
+    <circle class="node" cx="152.8" cy="210.2" r="8"  fill="currentColor" style="animation-delay:.43s"/>
+    <circle class="node" cx="87.2"  cy="210.2" r="5"  fill="currentColor" style="animation-delay:.50s"/>
+    <circle class="node" cx="36.9"  cy="168"   r="12" fill="currentColor" style="animation-delay:.57s"/>
+    <circle class="node" cx="25.5"  cy="103.3" r="5"  fill="currentColor" style="animation-delay:.64s"/>
+    <circle class="node" cx="58.3"  cy="46.5"  r="7"  fill="currentColor" style="animation-delay:.71s"/>
+    <g class="pin">
+      <path fill="currentColor" d="M120 72 C 139 72 154 87 154 106 C 154 125 137 140 120 168 C 103 140 86 125 86 106 C 86 87 101 72 120 72 Z"/>
+      <circle cx="120" cy="106" r="11" fill="var(--ink)"/>
+    </g>
+  </svg>
+  <div class="title">NomadMap</div>
+  <div class="sub">YOUR WORLD, IN MOTION...</div>
+  <div class="sub">COMING SOON...</div>
+</div>
+<footer class="legal">
+  <a href="/privacy">Privacy Policy</a>
+  <a href="/terms">Terms &amp; Conditions</a>
+</footer>
+</body>
+</html>
